@@ -28,7 +28,7 @@
     <section class="mt-8">
       <h3>
         <span class="mt-2 block text-xl leading-8 font-extrabold tracking-tight text-gray-700 sm:text-2xl">
-          Vueで実装する際のmemo (随時改善)
+          理解memo (随時改善)
         </span>
       </h3>
       <div class="mt-4">

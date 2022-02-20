@@ -36,6 +36,9 @@ const accorditonList = ref([
     ref="accordionSection"
     class="border-solid border-1 border-gray-300"
   >
+    <h3 class="sr-only">
+      アコーディオンのサンプル
+    </h3>
     <div
       v-for="(item, idx) in accorditonList"
       :key="idx"
