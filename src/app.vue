@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Breadcrumb from '@/components/accesible/Breadcrumb.vue'
+import BreadCrumb from './components/accesible/BreadCrumb.vue'
 const nowPageName = useRoute().name === 'index' ? 'HOME' : useRoute().name
 </script>
 <template>
@@ -12,7 +12,7 @@ const nowPageName = useRoute().name === 'index' ? 'HOME' : useRoute().name
         <TheHeader />
       </header>
       <main class="max-w-7xl mx-auto px-4 my-2 sm:px-6 sm:my-4 lg:px-8 lg:my-6">
-        <Breadcrumb />
+        <BreadCrumb />
         <NuxtPage />
       </main>
     </div>
