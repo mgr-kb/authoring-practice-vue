@@ -37,7 +37,7 @@ import AccesibleLayout from '@/components/AccesibleLayout.vue';
           <Link
             href="https://yaraneba.com/aria-describedby/"
             :is-blank="true"
-            name="こちらの記事"
+            name="aria-describedby属性の動作検証の記事"
           />などがわかりやすいかも。
         </li>
       </ul>

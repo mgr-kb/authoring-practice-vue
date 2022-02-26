@@ -4,13 +4,14 @@ const formData = ref({
 })
 const isOpen = ref(false)
 const modalRef = ref<HTMLHeadingElement | null>(null)
-const buttonRef = ref<HTMLButtonElement | null>(null)
+const textareaRef = ref<HTMLTextAreaElement | null>(null)
+const clearButtonRef = ref<HTMLButtonElement | null>(null)
 const alertMessage = ref('')
 const successMessage = ref('')
 
 const clearMessage = () => {
   formData.value.textInput = ''
-  isOpen.value = false
+  modalClose(true)
 }
 const onSubmit = () => {
   const isValid = () => {
@@ -30,9 +31,9 @@ const modalOpen = async () => {
   await nextTick()
   modalRef.value?.focus()
 }
-const modalClose = () => {
+const modalClose = (isClear = false) => {
   isOpen.value = false
-  buttonRef.value?.focus()
+  isClear ? textareaRef.value?.focus() : clearButtonRef.value?.focus()
 }
 </script>
 
@@ -54,6 +55,7 @@ const modalClose = () => {
           <div class="max-w-lg flex rounded-md shadow-sm">
             <textarea
               id="username"
+              ref="textareaRef"
               v-model="formData.textInput"
               name="textInput"
               placeholder="メッセージをここに入力します。"
@@ -70,6 +72,7 @@ const modalClose = () => {
           送信する
         </button>
         <button
+          ref="clearButtonRef"
           type="button"
           class="w-1/2 py-2 bg-red-700 text-white hover:bg-red-600 rounded-lg"
           @click="formData.textInput.length > 0 ? modalOpen() : ''"
@@ -111,7 +114,6 @@ const modalClose = () => {
             </div>
             <div class="flex justify-end gap-2 mt-4">
               <button
-                ref="buttonRef"
                 class="px-4 py-2 rounded-lg bg-red-700 text-white hover:bg-red-600"
                 @click="clearMessage"
               >

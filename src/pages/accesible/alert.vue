@@ -30,7 +30,7 @@ import AccesibleLayout from '@/components/AccesibleLayout.vue';
           <Link
             href="https://www.w3.org/TR/wai-aria-practices/examples/alert/alert.html"
             :is-blank="true"
-            name="実装例"
+            name="アラートの実装例"
           />から、aria-liveやaria-atomicに言及してあり、<br>
           これはrole=alertな要素に対して暗黙的に設定される。
         </li>
@@ -39,7 +39,7 @@ import AccesibleLayout from '@/components/AccesibleLayout.vue';
           <Link
             href="http://www.webcreativepark.net/html/wai-aria/aria-live/"
             :is-blank="true"
-            name="こちら"
+            name="aria-live属性の説明"
           />より、<br>内容更新があった要素に対して即座に通達してくれる。
         </li>
         <li class="mt-2">
@@ -47,7 +47,7 @@ import AccesibleLayout from '@/components/AccesibleLayout.vue';
           <Link
             href="http://www.webcreativepark.net/html/wai-aria/aria-atomic/"
             :is-blank="true"
-            name="こちら"
+            name="aria-atomic属性の説明"
           />より、<br>内容更新のあった要素を通達してくれる。
         </li>
       </ul>
