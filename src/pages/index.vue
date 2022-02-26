@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { useMyRoutes } from '@/composables/useMyRoutes'
-const links = useMyRoutes()
 </script>
 
 <template>
@@ -10,21 +8,9 @@ const links = useMyRoutes()
         HOME
       </span>
     </h2>
-    <!-- TODO Navigation -->
     <div class="mt-4">
-      <ul>
-        <li
-          v-for="(link, idx) in links"
-          :key="idx"
-          class="text-blue-800 hover:text-blue-600"
-        >
-          <Link
-            :is-inner="true"
-            :href="link.path"
-            :name="link.name"
-          />
-        </li>
-      </ul>
+      <p>mgr個人のsandboxページです。</p>
+      <p>WebアクセシビリティやVueを中心に作業しています。</p>
     </div>
   </section>
 </template>

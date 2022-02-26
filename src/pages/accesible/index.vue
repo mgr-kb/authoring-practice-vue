@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useMyRoutes } from '@/composables/useMyRoutes'
-const links = useMyRoutes()
-// TODO accesibleのみ
+const nowPath = useRoute().path
+const { routes } = useMyRoutes(nowPath)
 </script>
 
 <template>
@@ -15,14 +15,14 @@ const links = useMyRoutes()
     <div class="mt-4">
       <ul>
         <li
-          v-for="(link, idx) in links"
+          v-for="(route, idx) in routes"
           :key="idx"
           class="text-blue-800 hover:text-blue-600"
         >
           <Link
             :is-inner="true"
-            :href="link.path"
-            :name="link.name"
+            :href="route.path"
+            :name="route.name"
           />
         </li>
       </ul>

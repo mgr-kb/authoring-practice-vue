@@ -20,13 +20,21 @@ defineProps({
 </script>
 
 <template>
-  <nuxt-link
+  <!-- FIXME 内部遷移でのイベント発火ができたらnuxt-linkにする -->
+  <!-- <nuxt-link
     v-if="isInner"
     :to="href"
     class="text-blue-800 hover:text-blue-600"
   >
     {{ name }}
-  </nuxt-link>
+  </nuxt-link> -->
+  <a
+    v-if="isInner"
+    :href="href"
+    class="text-blue-800 hover:text-blue-600"
+  >
+    {{ name }}
+  </a>
   <a
     v-else
     :href="href"

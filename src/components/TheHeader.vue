@@ -1,48 +1,134 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const isOpen = ref(false)
+const toggleDrawer = () => {
+  isOpen.value = !isOpen.value
+}
+const { routes } = useMyRoutes()
+const navs = routes.value.filter(route => {
+  if (route.path === '/') {
+    return
+  }
+  const params = route.path.substring(1).split('/')
+  if (params.length === 1) {
+    return route
+  }
+})
+const nowPath = useRoute().path
+</script>
 <template>
-  <nav class="max-w-7xl mx-auto px-4 sm:px-6">
-    <div class="flex justify-between items-center border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
-      <h1 class="flex justify-start lg:w-0 lg:flex-1">
-        <nuxt-link to="/">
-          <span class="sr-only">ホームに戻る</span>
-          <svg
-            style="width:48px;height:48px"
-            viewBox="0 0 24 24"
+  <nav class="bg-gray-800">
+    <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+      <div class="relative flex items-center justify-between h-16">
+        <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+          <!-- Mobile menu button-->
+          <button
+            type="button"
+            class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+            aria-controls="mobile-menu"
+            :aria-expanded="!isOpen"
+            @click="toggleDrawer"
           >
-            <path
-              fill="currentColor"
-              d="M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z"
-            />
-          </svg>
-        </nuxt-link>
-      </h1>
-      <div class="-mr-2 -my-2 md:hidden">
-        <button
-          type="button"
-          class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
-          aria-expanded="false"
-        >
-          <span class="sr-only">Open menu</span>
-          <svg
-            class="h-6 w-6"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            aria-hidden="true"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M4 6h16M4 12h16M4 18h16"
-            />
-          </svg>
-        </button>
+            <span class="sr-only">メニューを開く</span>
+            <svg
+              v-if="!isOpen"
+              class="h-6 w-6"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              :aria-hidden="isOpen"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+            <svg
+              v-if="isOpen"
+              class="h-6 w-6"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              :aria-hidden="!isOpen"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+        </div>
+        <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
+          <h1 class="flex-shrink-0 flex items-center">
+            <a
+              href="/"
+              class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+            >
+              HOME
+            </a>
+          </h1>
+          <ul class="hidden sm:flex sm:ml-6">
+            <li
+              v-for="(route, index) in navs"
+              :key="index"
+              class="flex space-x-4"
+            >
+              <!-- FIXME nuxt-linkで切り替えたい -->
+              <a
+                v-if="route.path === nowPath"
+                :href="route.path"
+                class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
+                aria-current="page"
+              >
+                {{ route.name }}
+              </a>
+              <a
+                v-else
+                :href="route.path"
+                class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+              >
+                {{ route.name }}
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
-      <!-- <ul class="hidden md:flex space-x-10 items-center justify-end md:flex-1 lg:w-0">
-        <li><nuxt-link to="#" class="text-base font-medium px-4 py-2 border border-transparent rounded-md shadow-sm text-gray-100 bg-indigo-600 hover:bg-indigo-700">ログインする</nuxt-link></li>
-      </ul> -->
+    </div>
+
+    <!-- Mobile menu, show/hide based on menu state. -->
+    <div
+      v-if="isOpen"
+      id="mobile-menu"
+      class="sm:hidden"
+    >
+      <ul class="px-2 pt-2 pb-3 space-y-1">
+        <li
+          v-for="(route, index) in navs"
+          :key="index"
+        >
+          <!-- FIXME nuxt-linkで切り替えたい -->
+          <a
+            v-if="route.path === nowPath"
+            :href="route.path"
+            class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
+            aria-current="page"
+          >
+            {{ route.name }}
+          </a>
+          <a
+            v-else
+            :href="route.path"
+            class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+          >
+            {{ route.name }}
+          </a>
+        </li>
+      </ul>
     </div>
   </nav>
 </template>

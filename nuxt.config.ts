@@ -5,6 +5,9 @@ export default defineNuxtConfig({
   typescript: {
     strict: true,
   },
+  head: {
+    htmlAttrs: { lang: 'ja' }
+  },
   srcDir: 'src',
   css: ['@/assets/css/tailwind.css'],
   build: {

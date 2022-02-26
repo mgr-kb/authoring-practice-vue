@@ -15,7 +15,7 @@ export const useBreadcrumbs = () => {
   params.forEach(param => {
     path = `${path}/${param}`
     const matchPath = router.getRoutes().find(r => r.path === path)
-    if (matchPath?.name != null) {
+    if (matchPath?.name != null && matchPath?.path !== '/') {
       crumbs.push({
         name: matchPath.name as string,
         path: matchPath.path,

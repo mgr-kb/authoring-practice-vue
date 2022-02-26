@@ -13,8 +13,8 @@ const crumbs = useBreadcrumbs()
     >
       <li class="flex">
         <div class="flex items-center">
-          <nuxt-link
-            to="/"
+          <a
+            href="/"
             class="text-gray-400 hover:text-gray-500"
           >
             <svg
@@ -27,7 +27,7 @@ const crumbs = useBreadcrumbs()
               <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
             </svg>
             <span class="sr-only">Home</span>
-          </nuxt-link>
+          </a>
         </div>
       </li>
 
@@ -47,13 +47,13 @@ const crumbs = useBreadcrumbs()
           >
             <path d="M.293 0l22 22-22 22h1.414l22-22-22-22H.293z" />
           </svg>
-          <nuxt-link
-            :to="item.path"
+          <a
+            :href="item.path"
             class="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700"
-            :aria-current="item.isCurrent ? 'page' : null"
+            :aria-current="item.isCurrent ? 'page' : undefined"
           >
             {{ item.name }}
-          </nuxt-link>
+          </a>
         </div>
       </li>
     </ol>
