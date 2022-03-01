@@ -17,7 +17,7 @@ import AccesibleLayout from '@/components/AccesibleLayout.vue';
     </template>
     <template #example>
       <div
-        id="accordion-group"
+        id="button-group"
         class="w-64"
       >
         <Button />
@@ -37,7 +37,6 @@ import AccesibleLayout from '@/components/AccesibleLayout.vue';
             name="ARIA: button ロール MDN"
           />
         </li>
-        <!-- <li>キーボード操作でのアコーディオン・ヘッダーの移動について</li> -->
       </ul>
     </template>
   </AccesibleLayout>
