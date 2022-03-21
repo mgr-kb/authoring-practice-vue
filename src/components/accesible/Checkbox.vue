@@ -1,7 +1,8 @@
 <script setup lang="ts">
-const checkedList = ref([])
-const onSubmit = () => {
-  alert(`checked: ${checkedList.value}`)
+const checkedList = ref(['lettuce'])
+const isAriaChecked = () => {
+  const length = checkedList.value.length
+  return length === 4 ? true : length > 0 ? 'mixed' : false
 }
 </script>
 
@@ -14,64 +15,66 @@ const onSubmit = () => {
       チェックボックスのサンプル
     </h3>
     <div>
-      <form @submit.prevent="onSubmit">
-        <div class="block">
-          <input
-            id="tomato"
-            v-model="checkedList"
-            value="tomato"
-            type="checkbox"
-          >
-          <label
-            for="tomato"
-            class="ml-1"
-          >Tomato</label>
+      <fieldset class="border-solid border-2 border-black p-2">
+        <legend>
+          Sandwich Condiments
+        </legend>
+        <div
+          role="checkbox"
+          class="group_checkbox"
+          :aria-checked="isAriaChecked"
+          aria-controls="cond1 cond2 cond3 cond4"
+          tabindex="0"
+        >
+          All condiments
         </div>
-        <div class="block">
-          <input
-            id="banana"
-            v-model="checkedList"
-            value="banana"
-            type="checkbox"
-          >
-          <label
-            for="banana"
-            class="ml-1"
-          >Banana</label>
-        </div>
-        <div class="block">
-          <input
-            id="onion"
-            v-model="checkedList"
-            value="onion"
-            type="checkbox"
-          >
-          <label
-            for="onion"
-            class="ml-1"
-          >Onion</label>
-        </div>
-        <div class="block">
-          <input
-            id="potato"
-            v-model="checkedList"
-            value="potato"
-            type="checkbox"
-          >
-          <label
-            for="potato"
-            class="ml-1"
-          >Potato</label>
-        </div>
-        <div class="block mt-2">
-          <button
-            type="submit"
-            class="px-4 py-1 bg-green-700 hover:bg-green-600 text-white rounded-lg"
-          >
-            送信
-          </button>
-        </div>
-      </form>
+        <ul class="checkboxes">
+          <li>
+            <label>
+              <input
+                id="cond1"
+                v-model="checkedList"
+                type="checkbox"
+                value="lettuce"
+              >
+              Lettuce
+            </label>
+          </li>
+          <li>
+            <label>
+              <input
+                id="cond2"
+                v-model="checkedList"
+                type="checkbox"
+                value="tomato"
+              >
+              Tomato
+            </label>
+          </li>
+          <li>
+            <label>
+              <input
+                id="cond3"
+                v-model="checkedList"
+                type="checkbox"
+                value="mustard"
+              >
+              Mustard
+            </label>
+          </li>
+          <li>
+            <label>
+              <input
+                id="cond4"
+                v-model="checkedList"
+                type="checkbox"
+                value="sprouts"
+              >
+              Sprouts
+            </label>
+          </li>
+        </ul>
+      </fieldset>
     </div>
   </section>
 </template>
